@@ -44,6 +44,53 @@
       border-radius: 12px;
     }
 
+    /* Logo + Title Layout */
+    .header-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+    }
+
+    .header-logo {
+    display: block;
+    height: 100px; /* Adjusted automatically with media queries below */
+    }
+
+    .header-titles {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    }
+
+    .header-titles h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+    margin-bottom: 0.4rem;
+    }
+
+    .header-titles h2 {
+    font-size: 1rem;
+    color: #555;
+    font-weight: 500;
+    }
+
+    /* Mobile layout */
+    @media (max-width: 768px) {
+        .header-flex {
+            flex-direction: column;
+            text-align: center;
+        }
+        .header-logo {
+            height: 80px;
+        }
+        .header-titles {
+            text-align: center;
+        }
+    }
+
+
     header {
       text-align: center;
       margin-bottom: 2.5rem;
@@ -231,35 +278,47 @@
 <body>
   <main class="page">
     <header>
-      <h1>TRIAL-FORMA: SMT-based Patient–Trial Eligibility Matching</h1>
-      <h2>Clause-level reasoning for precise clinical trial recruitment</h2>
-
-      <div class="authors">
-
-        <span>Cyrus Zhou</span>,
-        <span>Yufei Jin</span>,
-        <span>Yilin Xu</span>,
-        <span>Chieh-Ju Chao</span>,
-        <span>Monica S Lam</span>
-      </div>
-      <div class="affiliation">
-        Department of Biomedical Engineering, Institution / Lab Name
-      </div>
-
-      <div class="pill-row">
-        <a href="https://arxiv.org/abs/xxxx.xxxxx" target="_blank" rel="noreferrer">
-          📄 Paper (arXiv)
-        </a>
-        <a href="https://trialforma.com" target="_blank" rel="noreferrer">
-          🌐 Project Page
-        </a>
-        <a href="#bibtex">
-          📚 BibTeX
-        </a>
-      </div>
-
-      <div class="pill-tag">Project Website · Last updated: Nov 2025</div>
+        <div class="header-flex">
+          <!-- Logo -->
+          <img src="forma_wide.png" alt="TrialFORMA Logo" class="header-logo" />
+      
+          <!-- Title block -->
+          <div class="header-titles">
+            <h1>
+              TRIAL-FORMA:<br>
+              SMT-based Patient–Trial Eligibility Matching
+            </h1>
+            <h2>Clause-level reasoning for precise clinical trial recruitment</h2>
+          </div>
+        </div>
+      
+        <div class="authors">
+          <span>Cyrus Zhou</span>,
+          <span>Yufei Jin</span>,
+          <span>Yilin Xu</span>,
+          <span>Chieh-Ju Chao</span>,
+          <span>Monica S Lam</span>
+        </div>
+      
+        <div class="affiliation">
+          Stanford-OVAL
+        </div>
+      
+        <div class="pill-row">
+          <a href="https://arxiv.org/abs/xxxx.xxxxx" target="_blank" rel="noreferrer">
+            📄 Paper (arXiv)
+          </a>
+          <a href="https://trialforma.com" target="_blank" rel="noreferrer">
+            🌐 Project Page
+          </a>
+          <a href="#bibtex">
+            📚 BibTeX
+          </a>
+        </div>
+      
+        <div class="pill-tag">Project Website · Last updated: Nov 2025</div>
     </header>
+      
 
     <section class="teaser">
       <!-- Replace with your own image -->
