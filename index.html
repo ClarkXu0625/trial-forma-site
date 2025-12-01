@@ -15,7 +15,7 @@
     <header>
         <div class="header-flex">
           <!-- Logo -->
-          <img src="forma_wide.png" alt="TrialFORMA Logo" class="header-logo" />
+          <img src="oval.png" alt="TrialFORMA Logo" class="header-logo" />
       
           <!-- Title block -->
           <div class="header-titles">
@@ -97,13 +97,13 @@
 
     <section class="teaser">
       <!-- Replace with your own image -->
-      <img src="teaser.png" alt="System overview or key result figure" />
-      <div class="teaser-caption">
+      <img src="forma_wide.png" alt="System overview or key result figure" />
+      <!-- <div class="teaser-caption">
         Figure 1: High-level overview of TRIAL-FORMA. Clinical trial
         eligibility criteria and patient notes are mapped to a shared
         SMT-based logical representation, enabling clause-level, exact
         reasoning instead of approximate embedding-based matching.
-      </div>
+      </div> -->
     </section>
 
     <section id="abstract">
@@ -177,16 +177,14 @@
           <table class="result-table">
             <thead>
               <tr>
-                <th>Method</th>
-                <th>Accuracy</th>
-                <th>Precision</th>
-                <th>Recall</th>
+                <th>Recall@K</th>
+                <th>SIGIR</th>
+                <th>TREC2022</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Embedding-based Retrieval</td>
-                <td>##</td>
+                <td>TrialGPT (embedding-based)</td>
                 <td>##</td>
                 <td>##</td>
               </tr>
@@ -194,10 +192,12 @@
                 <td><strong>TRIAL-FORMA (ours)</strong></td>
                 <td><strong>##</strong></td>
                 <td><strong>##</strong></td>
-                <td><strong>##</strong></td>
               </tr>
             </tbody>
           </table>
+          <p>
+            TrialFORMA can deliver real-time matching with almost no LLM inference costs 
+          </p>
         </div>
         <!-- <div>
           <p><strong>Demo Highlights</strong></p>

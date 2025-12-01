@@ -37,7 +37,7 @@ a:hover {
 /* Logo + Title Layout */
 .header-flex {
 display: flex;
-justify-content: center;
+justify-content: flex-start;
 align-items: center;
 gap: 1.2rem;
 margin-bottom: 1.5rem;
@@ -45,7 +45,7 @@ margin-bottom: 1.5rem;
 
 .header-logo {
 display: block;
-height: 100px; /* Adjusted automatically with media queries below */
+height: 150px; /* Adjusted automatically with media queries below */
 }
 
 .header-titles {
