@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TRIAL-FORMA: SMT-based Patient–Trial Matching</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="TRIAL-FORMA: An SMT-based system for precise, clause-level patient–trial eligibility matching."
+  />
+  <style>
+    /* Basic reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      line-height: 1.6;
+      color: #222;
+      background-color: #f7f7f9;
+    }
+
+    a {
+      color: #005fb8;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 2rem 1.2rem 3rem;
+      background: #fff;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      border-radius: 12px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    header h2 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+
+    .authors {
+      font-size: 0.95rem;
+      color: #444;
+      margin-bottom: 0.5rem;
+    }
+
+    .affiliation {
+      font-size: 0.85rem;
+      color: #777;
+      margin-bottom: 1.25rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .pill-row a {
+      border-radius: 999px;
+      padding: 0.45rem 1.1rem;
+      border: 1px solid #d0d7de;
+      background: #f6f8fa;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .pill-row a:hover {
+      background: #e9eef5;
+      text-decoration: none;
+    }
+
+    .pill-tag {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #555;
+      margin-bottom: 0.75rem;
+      text-align: center;
+    }
+
+    .teaser {
+      margin-bottom: 2rem;
+    }
+
+    .teaser img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin: 0 auto;
+      border: 1px solid #e3e3e3;
+    }
+
+    .teaser-caption {
+      font-size: 0.85rem;
+      color: #666;
+      text-align: center;
+      margin-top: 0.4rem;
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    section h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      border-bottom: 1px solid #e1e4e8;
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.9rem;
+    }
+
+    p {
+      margin-bottom: 0.75rem;
+      font-size: 0.97rem;
+    }
+
+    .inline-code {
+      font-family: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono",
+        "Courier New", monospace;
+      background: #f6f8fa;
+      border-radius: 4px;
+      padding: 0.1rem 0.3rem;
+      font-size: 0.9em;
+    }
+
+    .columns {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 1.4rem;
+    }
+
+    .result-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    .result-table th,
+    .result-table td {
+      border: 1px solid #e1e4e8;
+      padding: 0.4rem 0.55rem;
+      text-align: left;
+    }
+
+    .result-table th {
+      background: #f6f8fa;
+      font-weight: 600;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.12rem 0.4rem;
+      border-radius: 999px;
+      background: #e6f4ea;
+      color: #1e7c3b;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    pre {
+      background: #0b1020;
+      color: #f5f5f5;
+      padding: 0.9rem 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    code {
+      font-family: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono",
+        "Courier New", monospace;
+    }
+
+    footer {
+      font-size: 0.8rem;
+      color: #888;
+      text-align: center;
+      margin-top: 1rem;
+      border-top: 1px solid #eee;
+      padding-top: 0.75rem;
+    }
+
+    @media (max-width: 768px) {
+      .columns {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 1.6rem;
+      }
+
+      .page {
+        padding: 1.5rem 1rem 2.5rem;
+        margin-top: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>TRIAL-FORMA: SMT-based Patient–Trial Eligibility Matching</h1>
+      <h2>Clause-level reasoning for precise clinical trial recruitment</h2>
+
+      <div class="authors">
+        <span>Yilin Xu</span>,
+        <span>Collaborator A</span>,
+        <span>Collaborator B</span>
+      </div>
+      <div class="affiliation">
+        Department of Biomedical Engineering, Institution / Lab Name
+      </div>
+
+      <div class="pill-row">
+        <a href="https://arxiv.org/abs/xxxx.xxxxx" target="_blank" rel="noreferrer">
+          📄 Paper (arXiv)
+        </a>
+        <a href="https://github.com/<your-username>/trial-forma" target="_blank" rel="noreferrer">
+          💻 Code (GitHub)
+        </a>
+        <a href="https://trialforma.com" target="_blank" rel="noreferrer">
+          🌐 Project Page
+        </a>
+        <a href="#bibtex">
+          📚 BibTeX
+        </a>
+      </div>
+
+      <div class="pill-tag">Project Website · Last updated: Nov 2025</div>
+    </header>
+
+    <section class="teaser">
+      <!-- Replace with your own image -->
+      <img src="teaser.png" alt="System overview or key result figure" />
+      <div class="teaser-caption">
+        Figure 1: High-level overview of TRIAL-FORMA. Clinical trial
+        eligibility criteria and patient notes are mapped to a shared
+        SMT-based logical representation, enabling clause-level, exact
+        reasoning instead of approximate embedding-based matching.
+      </div>
+    </section>
+
+    <section id="abstract">
+      <h3>Abstract</h3>
+      <p>
+        Clinical trial recruitment systems often rely on embedding-based
+        retrieval, which optimizes aggregate ranking metrics but can miss
+        fine-grained eligibility constraints and introduce subtle mismatches.
+        In contrast, <strong>TRIAL-FORMA</strong> grounds patient notes and
+        trial criteria in a shared <em>satisfiability-modulo-theories</em>
+        (SMT) representation. This enables exact, clause-by-clause evaluation
+        of eligibility conditions and transparent failure modes.
+      </p>
+      <p>
+        We present an end-to-end pipeline that (i) canonicalizes free-text
+        trial criteria, (ii) extracts structured patient facts from clinical
+        notes, and (iii) compiles both into SMT formulas to decide
+        eligibility. On a benchmark of de-identified clinical trials and
+        patient notes, TRIAL-FORMA improves strict eligibility accuracy while
+        providing interpretable proofs of (in)eligibility.
+      </p>
+    </section>
+
+    <section id="method">
+      <h3>Method</h3>
+      <p>
+        TRIAL-FORMA consists of three main components:
+      </p>
+      <ol>
+        <li>
+          <strong>Trial Canonicalization:</strong> Natural-language inclusion
+          and exclusion criteria are mapped to canonical predicates (e.g.,
+          disease, age, lab values, geographic constraints) with explicit
+          time windows.
+        </li>
+        <li>
+          <strong>Patient Fact Extraction:</strong> Clinical notes are parsed
+          into structured facts, such as diagnoses, procedures, medications,
+          and temporal attributes, represented as logical atoms.
+        </li>
+        <li>
+          <strong>SMT Compilation and Solving:</strong> Both trial criteria
+          and patient facts are compiled into SMT-LIB. Eligibility is decided
+          by checking satisfiability of the conjunction of trial constraints
+          with patient facts.
+        </li>
+      </ol>
+      <p>
+        This design allows us to answer queries such as: “Does there exist a
+        consistent assignment of patient attributes that satisfies all
+        mandatory criteria?” and to generate minimal unsatisfiable cores that
+        explain why a given patient is ineligible.
+      </p>
+    </section>
+
+    <section id="results">
+      <h3>Results</h3>
+      <div class="columns">
+        <div>
+          <p>
+            We evaluate TRIAL-FORMA on a held-out set of patient–trial pairs
+            with expert labels. Our system improves strict eligibility
+            classification compared to a strong embedding-based baseline
+            while providing interpretable reasoning traces.
+          </p>
+          <table class="result-table">
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>Accuracy</th>
+                <th>Precision</th>
+                <th>Recall</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Embedding-based Retrieval</td>
+                <td>0.78</td>
+                <td>0.81</td>
+                <td>0.73</td>
+              </tr>
+              <tr>
+                <td><strong>TRIAL-FORMA (ours)</strong></td>
+                <td><strong>0.88</strong></td>
+                <td><strong>0.90</strong></td>
+                <td><strong>0.86</strong></td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            Beyond aggregate metrics, TRIAL-FORMA also produces
+            <span class="badge">explanations</span> that highlight which
+            specific criteria are satisfied or violated, supporting human-in-the-loop oversight.
+          </p>
+        </div>
+        <div>
+          <p><strong>Demo Highlights</strong></p>
+          <ul>
+            <li>Interactive inspection of satisfied / violated constraints</li>
+            <li>Support for temporal reasoning (time windows, durations)</li>
+            <li>Modular trial and patient representation for debugging</li>
+          </ul>
+          <p>
+            A live demo (with synthetic data) and more detailed examples will
+            be made available at:
+            <span class="inline-code">https://trialforma.com/demo</span>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="resources">
+      <h3>Resources</h3>
+      <p>
+        <strong>Paper:</strong>
+        <a href="https://arxiv.org/abs/xxxx.xxxxx" target="_blank" rel="noreferrer">
+          arXiv:xxxx.xxxxx
+        </a>
+      </p>
+      <p>
+        <strong>Code:</strong>
+        <a href="https://github.com/<your-username>/trial-forma" target="_blank" rel="noreferrer">
+          GitHub – Trial-FORMA
+        </a>
+      </p>
+      <p>
+        <strong>Dataset / Benchmark (if applicable):</strong>
+        <a href="https://zenodo.org/record/xxxxxxx" target="_blank" rel="noreferrer">
+          Download benchmark
+        </a>
+      </p>
+      <p>
+        <strong>Contact:</strong> your.email@institution.edu
+      </p>
+    </section>
+
+    <section id="bibtex">
+      <h3>BibTeX</h3>
+      <pre><code>@inproceedings{xu2025trialforma,
+  title     = {TRIAL-FORMA: SMT-based Patient--Trial Eligibility Matching},
+  author    = {Xu, Yilin and Collaborator, A. and Collaborator, B.},
+  booktitle = {Proceedings of XYZ Conference on Clinical AI},
+  year      = {2025}
+}</code></pre>
+    </section>
+
+    <footer>
+      © 2025 TRIAL-FORMA. This project page is built with GitHub Pages.
+    </footer>
+  </main>
+</body>
+</html>
