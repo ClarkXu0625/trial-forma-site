@@ -235,9 +235,12 @@
       <h2>Clause-level reasoning for precise clinical trial recruitment</h2>
 
       <div class="authors">
+
+        <span>Cyrus Zhou</span>,
+        <span>Yufei Jin</span>,
         <span>Yilin Xu</span>,
-        <span>Collaborator A</span>,
-        <span>Collaborator B</span>
+        <span>Chieh-Ju Chao</span>,
+        <span>Monica S Lam</span>
       </div>
       <div class="affiliation">
         Department of Biomedical Engineering, Institution / Lab Name
@@ -246,9 +249,6 @@
       <div class="pill-row">
         <a href="https://arxiv.org/abs/xxxx.xxxxx" target="_blank" rel="noreferrer">
           📄 Paper (arXiv)
-        </a>
-        <a href="https://github.com/<your-username>/trial-forma" target="_blank" rel="noreferrer">
-          💻 Code (GitHub)
         </a>
         <a href="https://trialforma.com" target="_blank" rel="noreferrer">
           🌐 Project Page
@@ -274,23 +274,22 @@
 
     <section id="abstract">
       <h3>Abstract</h3>
-      <p>
-        Clinical trial recruitment systems often rely on embedding-based
-        retrieval, which optimizes aggregate ranking metrics but can miss
-        fine-grained eligibility constraints and introduce subtle mismatches.
-        In contrast, <strong>TRIAL-FORMA</strong> grounds patient notes and
-        trial criteria in a shared <em>satisfiability-modulo-theories</em>
-        (SMT) representation. This enables exact, clause-by-clause evaluation
-        of eligibility conditions and transparent failure modes.
-      </p>
-      <p>
-        We present an end-to-end pipeline that (i) canonicalizes free-text
-        trial criteria, (ii) extracts structured patient facts from clinical
-        notes, and (iii) compiles both into SMT formulas to decide
-        eligibility. On a benchmark of de-identified clinical trials and
-        patient notes, TRIAL-FORMA improves strict eligibility accuracy while
-        providing interpretable proofs of (in)eligibility.
-      </p>
+
+    <p>
+        Effective patient-trial matching lies at the heart of clinical research. Despite spending approximately $1.9 billion annually on recruitment, nearly 80% of clinical trials still fail to meet their enrollment targets. Errors in patient-trial matching are high-stakes on both recall and precision: false negatives deny patients from potentially life-saving options, while false positives steer patients toward infeasible or unsafe trials. Yet current pipelines leveraging embedding-based retrieval are optimized to minimize aggregate retrieval loss rather than eliminate mismatches for each patient-trial pair, making them structurally ill-suited to this safety-critical task.
+    </p>
+    <p>
+        We present TrialFORMA (FOmal Reasoning and Modeling Agent), a system for patient–trial matching that grounds patient records and eligibility criteria in a shared formal SMT (Satisfiability Modulo Theories) representation. Unlike recent approaches that merely minimize error rates, TrialFORMA is designed around an exactness objective, aiming—within its formal representation—to eliminate both false negatives and false positives.
+    </p>
+    <p>
+        Attempting to represent both patient records and trial eligibility criteria in SMT confronts us with several challenges: (1) imperfect semantic parsing from natural language into SMT predicates; (2) substantial variation in concept names and surface expressions across trials and patient records; and (3) incomplete clinical ontologies that omit relevant concepts and relations. 
+    </p>
+    <p>
+        To address these challenges, we develop a family of agentic workflows that (1) semantically parse natural language into SMT; (2) perform concept canonicalization and expression schematization; and (3) bridge missing links in the underlying clinical ontologies.
+    </p>
+    <p>
+        Preliminary experiments on standard patient–trial matching benchmarks show that TrialFORMA achieves near-perfect recall at high precision, while providing clause-level auditability of eligibility decisions. These results establish symbolic, logic-based matching as an accurate and transparent foundation for high-stake clinical eligibility workflows.
+    </p>
     </section>
 
     <section id="method">
@@ -408,12 +407,13 @@
 
     <section id="bibtex">
       <h3>BibTeX</h3>
-      <pre><code>@inproceedings{xu2025trialforma,
-  title     = {TRIAL-FORMA: SMT-based Patient--Trial Eligibility Matching},
-  author    = {Xu, Yilin and Collaborator, A. and Collaborator, B.},
-  booktitle = {Proceedings of XYZ Conference on Clinical AI},
-  year      = {2025}
-}</code></pre>
+      <pre><code>@software{forma_clinical_trial_matching,
+        title = {FORMA: Formal Reasoning and Modelling Agent},
+        subtitle = {An Application to Clinical Trials},
+        author = {Cyrus Zhou, Yufei Jin, Yilin Xu, Chieh-Ju Chao, Monica S Lam},
+        year = {2025},
+        url = {https://github.com/stanford-oval/trial-forma}
+      }</code></pre>
     </section>
 
     <footer>
