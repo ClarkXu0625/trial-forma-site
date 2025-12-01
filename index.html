@@ -75,7 +75,8 @@
                 <span class="news-desc">Present TrialFORMA at
                     <a href="https://medhub.stanford.edu/event/aihealth2025/summary" target="_blank" rel="noreferrer">
                         Stanford AI+HEALTH 2025</a>
-                     poster session.
+                     poster session. <a href="https://medhub.stanford.edu/event/aihealth2025/summary" target="_blank" rel="noreferrer">
+                        Poster Link</a>
                     </span>
             </li>
         
@@ -109,10 +110,10 @@
       <h3>Abstract</h3>
 
     <p>
-        Effective patient-trial matching lies at the heart of clinical research. Despite spending approximately $1.9 billion annually on recruitment, nearly 80% of clinical trials still fail to meet their enrollment targets. Errors in patient-trial matching are high-stakes on both recall and precision: false negatives deny patients from potentially life-saving options, while false positives steer patients toward infeasible or unsafe trials. Yet current pipelines leveraging embedding-based retrieval are optimized to minimize aggregate retrieval loss rather than eliminate mismatches for each patient-trial pair, making them structurally ill-suited to this safety-critical task.
+        Effective patient-trial matching lies at the heart of clinical research. Despite spending approximately <strong>$1.9 billion</strong> annually on recruitment, nearly <strong>80%</strong> of clinical trials still fail to meet their enrollment targets. Errors in patient-trial matching are high-stakes on both recall and precision: false negatives deny patients from potentially life-saving options, while false positives steer patients toward infeasible or unsafe trials. Yet current pipelines leveraging embedding-based retrieval are optimized to minimize aggregate retrieval loss rather than eliminate mismatches for each patient-trial pair, making them structurally ill-suited to this safety-critical task.
     </p>
     <p>
-        We present TrialFORMA (FOmal Reasoning and Modeling Agent), a system for patient–trial matching that grounds patient records and eligibility criteria in a shared formal SMT (Satisfiability Modulo Theories) representation. Unlike recent approaches that merely minimize error rates, TrialFORMA is designed around an exactness objective, aiming—within its formal representation—to eliminate both false negatives and false positives.
+        We present <strong>TrialFORMA (FOmal Reasoning and Modeling Agent)</strong>, a system for patient–trial matching that grounds patient records and eligibility criteria in a shared formal SMT (Satisfiability Modulo Theories) representation. Unlike recent approaches that merely minimize error rates, TrialFORMA is designed around an exactness objective, aiming—within its formal representation—to eliminate both false negatives and false positives.
     </p>
     <p>
         Attempting to represent both patient records and trial eligibility criteria in SMT confronts us with several challenges: (1) imperfect semantic parsing from natural language into SMT predicates; (2) substantial variation in concept names and surface expressions across trials and patient records; and (3) incomplete clinical ontologies that omit relevant concepts and relations. 
@@ -125,37 +126,6 @@
     </p>
     </section>
 
-    <!-- <section id="method">
-      <h3>Method</h3>
-      <p>
-        TRIAL-FORMA consists of three main components:
-      </p>
-      <ol>
-        <li>
-          <strong>Trial Canonicalization:</strong> Natural-language inclusion
-          and exclusion criteria are mapped to canonical predicates (e.g.,
-          disease, age, lab values, geographic constraints) with explicit
-          time windows.
-        </li>
-        <li>
-          <strong>Patient Fact Extraction:</strong> Clinical notes are parsed
-          into structured facts, such as diagnoses, procedures, medications,
-          and temporal attributes, represented as logical atoms.
-        </li>
-        <li>
-          <strong>SMT Compilation and Solving:</strong> Both trial criteria
-          and patient facts are compiled into SMT-LIB. Eligibility is decided
-          by checking satisfiability of the conjunction of trial constraints
-          with patient facts.
-        </li>
-      </ol>
-      <p>
-        This design allows us to answer queries such as: “Does there exist a
-        consistent assignment of patient attributes that satisfies all
-        mandatory criteria?” and to generate minimal unsatisfiable cores that
-        explain why a given patient is ineligible.
-      </p>
-    </section> -->
     <section id="capabilities" class="key-capabilities">
         <h3>Key capabilities</h3>
         <ul class="capability-list">
@@ -216,38 +186,28 @@
             <tbody>
               <tr>
                 <td>Embedding-based Retrieval</td>
-                <td>0.78</td>
-                <td>0.81</td>
-                <td>0.73</td>
+                <td>##</td>
+                <td>##</td>
+                <td>##</td>
               </tr>
               <tr>
                 <td><strong>TRIAL-FORMA (ours)</strong></td>
-                <td><strong>0.88</strong></td>
-                <td><strong>0.90</strong></td>
-                <td><strong>0.86</strong></td>
+                <td><strong>##</strong></td>
+                <td><strong>##</strong></td>
+                <td><strong>##</strong></td>
               </tr>
             </tbody>
           </table>
-          <p>
-            Beyond aggregate metrics, TRIAL-FORMA also produces
-            <span class="badge">explanations</span> that highlight which
-            specific criteria are satisfied or violated, supporting human-in-the-loop oversight.
-          </p>
         </div>
-        <div>
+        <!-- <div>
           <p><strong>Demo Highlights</strong></p>
           <ul>
             <li>Interactive inspection of satisfied / violated constraints</li>
             <li>Support for temporal reasoning (time windows, durations)</li>
             <li>Modular trial and patient representation for debugging</li>
           </ul>
-          <p>
-            A live demo (with synthetic data) and more detailed examples will
-            be made available at:
-            <span class="inline-code">https://trialforma.com/demo</span>.
-          </p>
         </div>
-      </div>
+      </div> -->
     </section>
 
     <section id="resources">
@@ -259,13 +219,13 @@
         </a>
       </p>
       <p>
-        <strong>Dataset / Benchmark (if applicable):</strong>
-        <a href="https://zenodo.org/record/xxxxxxx" target="_blank" rel="noreferrer">
-          Download benchmark
-        </a>
+        <strong>Dataset:</strong>
+        <a href="https://data.csiro.au/collection/csiro:17152" target="_blank" rel="noreferrer"> SIGIR 2016</a> corpus , 
+        <a href="https://www.trec-cds.org/2021.html" target="_blank" rel="noreferrer">TREC Clinical Trials 2021</a> corpus, 
+        <a href="https://www.trec-cds.org/2022.html" target="_blank" rel="noreferrer">TREC Clinical Trials 2022</a> corpus
       </p>
       <p>
-        <strong>Contact:</strong> your.email@institution.edu
+        <strong>Contact:</strong> zikai@stanford.edu
       </p>
     </section>
 
