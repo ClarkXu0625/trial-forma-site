@@ -63,20 +63,19 @@
                 <span class="news-title">Poster Presentation at Stanford AI+HEALTH 2025</span>
                 <span class="news-desc">Present TrialFORMA at
                     <a href="https://medhub.stanford.edu/event/aihealth2025/summary" target="_blank" rel="noreferrer">
-                        Stanford AI+HEALTH 2025
-                      </a>
-                    poster session.
+                        Stanford AI+HEALTH 2025</a>
+                     poster session.
                     </span>
             </li>
         
             <li class="news-item">
-                <span class="news-date">December 2025</span>
+                <span class="news-date">December 1, 2025</span>
                 <span class="news-title">Public Website Launch</span>
                 <span class="news-desc">TrialFORMA project website is now live at trialforma.com.</span>
             </li>
         
             <li class="news-item">
-                <span class="news-date">November 2025</span>
+                <span class="news-date">November, 2025</span>
                 <span class="news-title">Evaluating the system</span>
                 <span class="news-desc">Preliminary benchmarks show high recall and transparent eligibility reasoning.</span>
             </li>
@@ -115,7 +114,7 @@
     </p>
     </section>
 
-    <section id="method">
+    <!-- <section id="method">
       <h3>Method</h3>
       <p>
         TRIAL-FORMA consists of three main components:
@@ -145,7 +144,44 @@
         mandatory criteria?” and to generate minimal unsatisfiable cores that
         explain why a given patient is ineligible.
       </p>
-    </section>
+    </section> -->
+    <section id="capabilities" class="key-capabilities">
+        <h3>Key capabilities</h3>
+        <ul class="capability-list">
+          <li class="capability-item">
+            <span class="capability-title">Compiler from trials → SMT:</span>
+             Turns free-form eligibility criteria into typed logical constraints
+            (CNF / SMT-LIB v2).
+          </li>
+      
+          <li class="capability-item">
+            <span class="capability-title">Ontology-aware entailment:</span>
+            Uses SNOMED / UMLS hierarchies to support principled subsumption
+            (e.g., Type 2 diabetes ⊑ Diabetes mellitus).
+          </li>
+      
+          <li class="capability-item">
+            <span class="capability-title">Patient schematization:</span>
+            From raw EHR/notes to normalized patient facts; supports optional LLM‑assisted diagnoses with guardrails.
+          </li>
+      
+          <li class="capability-item">
+            <span class="capability-title">Relation curation:</span>
+            Curating missing relations in SNOMED/UMLS ontology, including "may entail".
+          </li>
+      
+          <li class="capability-item">
+            <span class="capability-title">Designs for scalability:</span>
+            SMT2PL projection, Database Optimization (Constraints as Database Tables), Key-Value Cache Optimization for Ontology Curation and Entailmen
+          </li>
+      
+          <li class="capability-item">
+            <span class="capability-title">Deterministic matching:</span>
+            SMT solver yields exact satisfiability with <strong>proof‑carrying explanations</strong> (unsat cores/assumptions optional).
+          </li>
+        </ul>
+      </section>
+      
 
     <section id="results">
       <h3>Results</h3>
